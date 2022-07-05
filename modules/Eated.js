@@ -106,6 +106,7 @@ const styles = StyleSheet.create({
     },
     foodBody: {
         width: 275,
+        marginBottom: 20,
     },
     foodImage: {
         width: 60,
