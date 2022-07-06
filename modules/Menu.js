@@ -19,13 +19,20 @@ export default function Menu({navigation})  {
         navigation.navigate('Список съеденного')
     }
 
+    function loadRegistration() {
+        user !== null ?
+        navigation.navigate('Регистрация', {user: user})
+            :
+        navigation.navigate('Регистрация')
+    }
+
     useEffect( () => {
         async function downloadData(){
             if(isFocused) {
                 await StoreManager.load("@user").then(async (user) => {
                     await setUser(user);
                     await StoreManager.load("@eated").then(eated => setEated(eated));
-                    !(user !== null) && navigation.navigate("Регистрация")
+                    !(user !== null) && loadRegistration()
 
                 })
             }
@@ -55,6 +62,7 @@ export default function Menu({navigation})  {
     return (
         <View style={styles.container}>
             <View style={styles.chartContainer}>
+                <Text>Приветствуем, {user !== null && user.name}</Text>
                 {typeof todayProgress === "string" &&
                     <ProgressCircle style={{ height: 120, width: 100 }} progress={Number(todayProgress)} progressColor={'rgb(134, 65, 244)'} />
                 }
@@ -65,6 +73,9 @@ export default function Menu({navigation})  {
             </View>
             <View style={styles.buttonHandler}>
                 <Button color={"#8641f4"} title={"Список съеденного"} onPress={loadEated}/>
+            </View>
+            <View style={styles.buttonHandlerOptional}>
+                <Button color={"#8641f4"} title={"Пересчитать калории"} onPress={loadRegistration}/>
             </View>
         </View>
     )
@@ -84,5 +95,8 @@ const styles = StyleSheet.create({
     chartContainer: {
         marginBottom: 40,
         alignItems: 'center',
+    },
+    buttonHandlerOptional: {
+        marginTop: 150,
     }
 });

@@ -3,15 +3,15 @@ import {StyleSheet, View, Text, Button, TextInput, Alert} from 'react-native';
 import * as StoreManager from "../store/StoreManager"
 import {Picker} from "@react-native-picker/picker";
 
-export default function Registration({navigation}) {
+export default function Registration({route, navigation}) {
+    const {user} = route.params;
 
-    const [name, setName] = useState('');
+    const [name, setName] = useState(user.name || '');
     const [age, setAge] = useState(0);
     const [height, setHeight] = useState(0);
     const [weight, setWeight] = useState(0);
-    const [gender, setGender] = useState("f");
+    const [gender, setGender] = useState("m");
     const [lifestyle, setLifestyle] = useState(1.2);
-
 
     const calories = useMemo(() => {
         return gender === "f" ?
