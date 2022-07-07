@@ -3,10 +3,10 @@ import {StyleSheet, View, Text, Button, TextInput, Alert} from 'react-native';
 import * as StoreManager from "../store/StoreManager"
 import {Picker} from "@react-native-picker/picker";
 
-export default function Registration({route, navigation}) {
-    const {user} = route.params;
+export function Registration({route, navigation}) {
+    const {user} = route.params
 
-    const [name, setName] = useState(user.name || '');
+    const [name, setName] = useState(user.name ?? '');
     const [age, setAge] = useState(0);
     const [height, setHeight] = useState(0);
     const [weight, setWeight] = useState(0);

@@ -23,7 +23,7 @@ export default function Menu({navigation})  {
         user !== null ?
         navigation.navigate('Регистрация', {user: user})
             :
-        navigation.navigate('Регистрация')
+        navigation.navigate('Регистрация', {user: {}})
     }
 
     useEffect( () => {
@@ -63,8 +63,10 @@ export default function Menu({navigation})  {
         <View style={styles.container}>
             <View style={styles.chartContainer}>
                 <Text>Приветствуем, {user !== null && user.name}</Text>
-                {typeof todayProgress === "string" &&
+                {typeof todayProgress === "string" ?
                     <ProgressCircle style={{ height: 120, width: 100 }} progress={Number(todayProgress)} progressColor={'rgb(134, 65, 244)'} />
+                :
+                    <ProgressCircle style={{ height: 120, width: 100 }} progress={0} progressColor={'rgb(134, 65, 244)'} />
                 }
                 <Text>Вы употребили {todayCalories} калорий из {user !== null && user.calories} положеных! </Text>
             </View>

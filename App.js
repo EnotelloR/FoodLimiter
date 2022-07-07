@@ -6,7 +6,7 @@ import {Food} from "./modules/Food";
 import {FoodItem} from "./modules/FoodItem";
 import {Eated} from "./modules/Eated";
 import {FoodAdder} from "./modules/FoodAdder";
-import Registration from './modules/Registration';
+import {Registration} from './modules/Registration';
 import Menu from './modules/Menu';
 
 const Stack = createStackNavigator();
